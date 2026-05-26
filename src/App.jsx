@@ -33,7 +33,19 @@ export default function App() {
   const [chaosMode, setChaosMode] = useState(false)
   const [cursor, setCursor] = useState({ x: 0, y: 0 })
   const [showHiddenEnding, setShowHiddenEnding] = useState(false)
+  const [access, setAccess] = useState(false)
+  const [password, setPassword] = useState("")
+  const [passError, setPassError] = useState("")
+  const checkPassword = () => {
+  const correctPassword = "SANSAR" // 👈 CHANGE THIS
 
+  if (password === correctPassword) {
+    setAccess(true)
+    setPassError("")
+  } else {
+    setPassError("Wrong password 😕 Try again")
+  }
+}
   const wrongReplies = [
     "Wrong answer detected 🚨",
     "Friendship revoked 😁",
@@ -96,7 +108,65 @@ export default function App() {
       toast.error("Incorrect human detected 🚨")
     }
   }
+  if (locked) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-black text-white relative overflow-hidden">
 
+      {/* floating glow */}
+      <div className="absolute w-[400px] h-[400px] bg-pink-500/20 blur-[120px] rounded-full"></div>
+
+      <div className="backdrop-blur-xl bg-white/10 border border-white/20 p-8 rounded-3xl w-[90%] max-w-md text-center z-10">
+
+        <h1 className="text-3xl font-bold mb-4">
+          🔐 Enter Password
+        </h1>
+
+        <p className="text-zinc-300 mb-6">
+          Hint: It's the name of her home 🏡
+        </p>
+
+        <input
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password..."
+          className="w-full p-4 rounded-2xl bg-black/40 border border-pink-500/30 text-white mb-4"
+        />
+
+        <button
+          onClick={() => {
+            if (password === "SANSAR") {
+              setLocked(false)
+            } else {
+              setPassError("Wrong password 😭 try again")
+            }
+          }}
+          className="w-full bg-pink-500 hover:bg-pink-600 py-3 rounded-2xl"
+        >
+          Unlock
+        </button>
+
+        {passError && (
+          <p className="text-pink-400 mt-3">{passError}</p>
+        )}
+
+        {/* HINT BUTTON */}
+        {!hintUsed && (
+          <button
+            onClick={() => {
+              setHintUsed(true)
+              alert("💡 Hint: Its something related to your 🏡 and its a six letter word")
+            }}
+            className="mt-5 text-sm text-zinc-400 underline"
+          >
+            Need a hint?
+          </button>
+        )}
+
+      </div>
+    </div>
+  )
+}
   if (loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-white flex-col">
