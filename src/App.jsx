@@ -36,7 +36,7 @@ export default function App() {
 
   const wrongReplies = [
     "Wrong answer detected 🚨",
-    "Friendship revoked 😭",
+    "Friendship revoked 😁",
     "Suspicious behavior.",
     "Try again genius.",
     "Access denied.",
@@ -82,7 +82,7 @@ export default function App() {
       setSuccess(true)
       setError("")
 
-      toast.success("Access granted 😭")
+      toast.success("Access granted")
 
       setTimeout(() => {
         setPage(2)
@@ -224,11 +224,11 @@ export default function App() {
         onClick={() => {
           setChaosMode(!chaosMode)
 
-          toast("CHAOS MODE ACTIVATED 😭")
+          toast("CHAOS MODE ACTIVATED")
         }}
         className="absolute top-5 left-5 z-50 bg-pink-500 px-5 py-3 rounded-2xl text-white"
       >
-        Chaos Mode 😭
+        Chaos Mode
       </button>
 
       <AnimatePresence mode="wait">
@@ -247,7 +247,7 @@ export default function App() {
                 <div className="text-7xl mb-6">✨</div>
 
                 <h1 className="text-white text-4xl font-bold mb-3">
-                  Who is your best friend? 😭
+                  Who is your best friend? 🤨
                 </h1>
 
                 <p className="text-zinc-300 mb-8">
@@ -340,7 +340,7 @@ export default function App() {
                 <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 max-w-md mx-auto text-left">
 
                   <div className="mb-4 bg-pink-500/30 p-3 rounded-2xl text-white">
-                    hey 😭
+                    hey 
                   </div>
 
                   <div className="mb-4 bg-white/10 p-3 rounded-2xl text-white">
