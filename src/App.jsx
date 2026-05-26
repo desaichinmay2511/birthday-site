@@ -78,7 +78,7 @@ export default function App() {
   }, [])
 
   const checkName = () => {
-    if (name === "Chinmay") {
+    if (name === "Chinmay" || name === "chinmay") {
       setSuccess(true)
       setError("")
 
@@ -513,11 +513,11 @@ export default function App() {
 
                 <TypeAnimation
                   sequence={[
-                    "Happy Birthday ❤️",
+                    "Happy Birthday Sangeeeeeetha 🎼❤️",
                     1000,
-                    "You matter more than you realize.",
+                    "You matter to me  more than you realize.",
                     1000,
-                    "Thank you for existing ✨",
+                    "Thank you for existing for me✨",
                   ]}
                   wrapper="div"
                   speed={50}
@@ -526,7 +526,7 @@ export default function App() {
                 />
 
                 <div className="mt-10 text-zinc-400 text-xl">
-                  100% emotionally coded 😭
+                  100% emotionally coded 
                 </div>
 
                 <button
