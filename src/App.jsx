@@ -137,7 +137,7 @@ export default function App() {
         </h1>
 
         <p className="text-zinc-300 mb-10 text-xl">
-          Come back on May 31 at 12:00 AM 😭❤️
+          Come back on May 31 at 12:00 AM ❤️
         </p>
 
         <div className="grid grid-cols-4 gap-4">
