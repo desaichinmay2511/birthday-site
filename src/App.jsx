@@ -26,7 +26,13 @@ export default function App() {
   const [chaosMode, setChaosMode] = useState(false)
   const [showHiddenEnding, setShowHiddenEnding] = useState(false)
   const [cursor, setCursor] = useState({ x: 0, y: 0 })
-
+  const [timeUnlocked, setTimeUnlocked] = useState(false)
+  const [countdown, setCountdown] = useState({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+})
   const wrongReplies = [
     "Wrong answer detected 🚨",
     "Friendship revoked 😭",
@@ -41,7 +47,26 @@ export default function App() {
     window.addEventListener("mousemove", moveCursor)
     return () => window.removeEventListener("mousemove", moveCursor)
   }, [])
-
+  useEffect(() => {
+  const unlockDate = new Date("2026-05-31T00:00:00").getTime()
+  const updateCountdown = () => {
+    const now = new Date().getTime()
+    const diff = unlockDate - now
+    if (diff <= 0) {
+      setTimeUnlocked(true)
+      return
+    }
+    setCountdown({
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    })
+  }
+  updateCountdown()
+  const interval = setInterval(updateCountdown, 1000)
+  return () => clearInterval(interval)
+}, [])
   useEffect(() => {
     const timer = setTimeout(() => setShowHiddenEnding(true), 45000)
     return () => clearTimeout(timer)
@@ -80,7 +105,94 @@ export default function App() {
       toast.error("Incorrect human detected 🚨")
     }
   }
+  if (!timeUnlocked) {
 
+  const unlockDate = new Date("2026-05-31T00:00:00")
+  const now = new Date()
+
+  const diff = unlockDate - now
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
+  const minutes = Math.floor((diff / 1000 / 60) % 60)
+  const seconds = Math.floor((diff / 1000) % 60)
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center text-white overflow-hidden relative">
+
+      <div className="absolute w-[500px] h-[500px] bg-pink-500/20 blur-[120px] rounded-full"></div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="backdrop-blur-xl bg-white/10 border border-white/20 p-10 rounded-3xl text-center z-10 max-w-lg"
+      >
+
+        <div className="text-7xl mb-6">
+          🎁
+        </div>
+
+        <h1 className="text-5xl font-bold mb-6">
+          Birthday Surprise Loading...
+        </h1>
+
+        <p className="text-zinc-300 mb-10 text-xl">
+          Come back on May 31 at 12:00 AM 😭❤️
+        </p>
+
+        <div className="grid grid-cols-4 gap-4">
+
+          <div className="bg-white/10 rounded-2xl p-4">
+  <div className="text-3xl font-bold">
+    {countdown.days}
+  </div>
+
+  <div className="text-zinc-400">
+    Days
+  </div>
+</div>
+
+          <div className="bg-white/10 rounded-2xl p-4">
+  <div className="text-3xl font-bold">
+    {countdown.hours}
+  </div>
+
+  <div className="text-zinc-400">
+    Minutes
+  </div>
+</div>
+
+          <div className="bg-white/10 rounded-2xl p-4">
+  <div className="text-3xl font-bold">
+    {countdown.minutes}
+  </div>
+
+  <div className="text-zinc-400">
+    Hours
+  </div>
+</div>
+
+          <div className="bg-white/10 rounded-2xl p-4">
+  <div className="text-3xl font-bold">
+    {countdown.seconds}
+  </div>
+
+  <div className="text-zinc-400">
+    Seconds
+  </div>
+</div>
+
+        </div>
+
+        <div className="mt-10 text-pink-400 animate-pulse">
+          Something emotional is being prepared ✨
+        </div>
+
+      </motion.div>
+
+    </div>
+  )
+}
   if (locked) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center overflow-hidden relative">
