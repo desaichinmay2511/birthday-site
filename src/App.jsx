@@ -158,7 +158,7 @@ export default function App() {
   </div>
 
   <div className="text-zinc-400">
-    Minutes
+    Hours
   </div>
 </div>
 
@@ -168,7 +168,7 @@ export default function App() {
   </div>
 
   <div className="text-zinc-400">
-    Hours
+    Minutes
   </div>
 </div>
 
