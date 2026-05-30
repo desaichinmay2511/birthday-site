@@ -160,7 +160,7 @@ export default function App() {
     setComplimentIndex(0)
   }
 
-  /*if (!timeUnlocked) {
+  if (!timeUnlocked) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-white overflow-hidden relative px-4">
         <Toaster />
@@ -220,7 +220,7 @@ export default function App() {
         </motion.div>
       </div>
     )
-  }*/
+  }
 
   if (locked) {
     return (
